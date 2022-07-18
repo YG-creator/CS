@@ -1,18 +1,120 @@
-# 0. 목적
+# 1. 디자인 패턴이란?
 
-SW **재사용성, 호환성, 유지 보수성**을 보장.
+재사용성, 호환성, 유지 보수성을 보장하는 소프트웨어 설계 패턴
 
 
 
-# 1. Adapter Pattern
+# 2. 구조
+
+1. Context 
+
+   문제 상황
+
+2. Problem
+
+   해결될 필요가 있는 디자인 이슈들
+
+3. Solution
+
+   문제 해결을 위한 요소, 요소간 관계, 책임, 협력관계
+
+   다양한 상황에 적용할수 있는 템플릿
+
+​	
+
+# 3. 분류
+
+![img](https://gmlwjd9405.github.io/images/design-pattern/types-of-designpattern.png)
+
+## 1. 생성 패턴
+
+* 객체 생성에 관련된 패턴
+
+  특정 객체 생성 or 변경 -> 프로그램 구조에 큰 영향 ㄴㄴ
+
+
+
+## 2. 구조 패턴
+
+* 클래스나 객체를 조합해 더 큰 구조 만드는 패턴
+
+  2개의 객체를 묶어 단일 인터페이스로 제공
+
+  2개의 객체를 묶어 새로운 기능 제공
+
+
+
+## 3. 행위 패턴
+
+* 객체의 행위를 조직, 관리, 연합
+
+  책임 분배, 결합도 최소화
+
+
+
+# 4. 디자인 원칙(SOLID)
+
+## 1. Design smells
+
+나쁜 디자인 증상 4가지
+
+1. Rigidity(경직성) 
+
+   하나의 변경을 위해서 다른 것들을 변경해야 됨
+
+2. Fragility (취약성)
+
+   어떤 부분을 수정하였는데 관련이 없는 다른 부분에 영향을 준다.
+
+3. Immobility(부동성)
+
+   재사용하기 위해서 시스템을 분리해서 컴포넌트를 만드는게 어렵다.
+
+4. Viscosity(점착성)
+
+   시스템에 코드를 추가하는 것보다 핵을 추가하는 것이 더 쉽다.
+
+ 
+
+## 2. SOLID
+
+소프트웨어 디자인 원칙
+
+1. Single Responsibility Principle
+
+   하나의 클래스는 하나의 역할만 해야 함
+
+2. Open Closed Principle
+
+   확장에 열려있고, 주변의 수정에는 닫혀 있어야 한다.
+
+3. Liskov Substitution Principle(LSP)
+
+   자식이 부모의 자리에 항상 교체될 수 있어야 함
+
+4. Interface Segregation Principle(ISP)
+
+   인터페이스가 잘 분리되어서, 클래스가 꼭 필요한 인터페이스만 구현하도록 해야함
+
+5. Dependency Inversion Principle(DIP)
+
+   상위 모듈이 하위 모듈에 의존하면 안됨
+
+   둘 다 추상화에 의존하며, 추사오하는 세부 사항에 의존하면 안됨
+
+
+
+
+
+# 5. 디자인 패턴 종류
+
+## 1. Adapter Pattern
 
 어뎁터 class로 서로다른 interface끼리 변환없이 서로 사용가능
 
 
 
-
-
-# 2. Composite Pattern
+## 2. Composite Pattern
 
 객체를 트리처럼 다룰 수 있음
 
@@ -24,7 +126,7 @@ SW **재사용성, 호환성, 유지 보수성**을 보장.
 
 
 
-# 3. Factory Method Pattern
+## 3. Factory Method Pattern
 
 객체를 만드는 부분을 Sub class에 맡기는 패턴
 
@@ -63,7 +165,7 @@ name으로 건너오는 값에 따라서, 생성되는 Robot이 다르게 설계
 
 
 
-# 4. Template Method Pattern
+## 4. Template Method Pattern
 
 추상클래스 + 구현 클래스
 
@@ -74,13 +176,13 @@ name으로 건너오는 값에 따라서, 생성되는 Robot이 다르게 설계
 
 
 
-# 5. Observer pattern
+## 5. Observer pattern
 
 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들에게 연락이 가고, 자동으로 정보가 갱신되는 1:N 관계(혹은 1대1)를 정의한다.
 
 
 
-# 6. Singleton pattern
+## 6. Singleton pattern
 
 하나의 인스턴스만 생성하여 사용하는 디자인 패턴이다.
 
@@ -109,85 +211,7 @@ final : 다시 값이 할당되지 않도록
 
 
 
-# 7. Design smells
-
-나쁜 디자인 증상 4가지
-
-1. Rigidity(경직성) 
-
-   하나의 변경을 위해서 다른 것들을 변경해야 됨
-
-2. Fragility (취약성)
-
-   어떤 부분을 수정하였는데 관련이 없는 다른 부분에 영향을 준다.
-
-3. Immobility(부동성)
-
-   재사용하기 위해서 시스템을 분리해서 컴포넌트를 만드는게 어렵다.
-
-4. Viscosity(점착성)
-
-   시스템에 코드를 추가하는 것보다 핵을 추가하는 것이 더 쉽다.
-
-
-
-# 8. SOLID
-
-소프트웨어 디자인 원칙
-
-1. Single Responsibility Principle
-
-   하나의 클래스는 하나의 역할만 해야 함
-
-2. Open Closed Principle
-
-   확장에 열려있고, 주변의 수정에는 닫혀 있어야 한다.
-
-3. Liskov Substitution Principle(LSP)
-
-   자식이 부모의 자리에 항상 교체될 수 있어야 함
-
-4. Interface Segregation Principle(ISP)
-
-   인터페이스가 잘 분리되어서, 클래스가 꼭 필요한 인터페이스만 구현하도록 해야함
-
-5. Dependency Inversion Principle(DIP)
-
-   상위 모듈이 하위 모듈에 의존하면 안됨
-
-   둘 다 추상화에 의존하며, 추사오하는 세부 사항에 의존하면 안됨
-
-
-
-# 8. 분류
-
-1. 생성 패턴 : 객체의 생성 방식 결정
-
-   Class-creational patterns, Object-creational patterns.
-
-```
-예) DBConnection을 관리하는 Instance를 하나만 만들 수 있도록 제한하여, 불필요한 연결을 막음.
-```
-
-
-
-2. 구조 패턴 : 객체간의 관계를 조직
-
-```
-예) 2개의 인터페이스가 서로 호환이 되지 않을 때, 둘을 연결해주기 위해서 새로운 클래스를 만들어서 연결시킬 수 있도록 함.
-```
-
-
-
-3. 행위 패턴 : 객체의 행위를 조직, 관리, 연합	
-
-```
-예) 하위 클래스에서 구현해야 하는 함수 및 알고리즘들을 미리 선언하여, 상속시 이를 필수로 구현하도록 함.
-```
-
-
-
-# 9. Strategy Pattern
+## 7. Strategy Pattern
 
 로직을 독립적으로 관리하는 것이 편해진다. 로직에 들어가는 '행동'을 클래스로 선언하고, 인터페이스와 연결하는 방식으로 구성하는 것!
 
