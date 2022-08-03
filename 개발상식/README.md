@@ -181,56 +181,164 @@
 
 1. 개념
    * 분산버전관리시스템
+   
 2. 특징
    * 버전 공유
    * 파일 시스템의 스냅샷을 저장
-3. Git Flow
+   
+3. Git flow 전략
 
-Git 이란 VCS(Version Control System)에 대해서 기본적인 이해를 요구하고 있다.
+   1. Git flow
 
-* [Git 을 조금 더 알아보자 slide share](https://www.slideshare.net/ky200223/git-89251791)
+      <img src="http://nvie.com/img/git-model@2x.png" alt="Git Flow model" style="zoom: 50%;" />
 
-Git 을 사용하기 위한 각종 전략(strategy)들이 존재한다. 해당 전략들에 대한 이해를 기반으로 Git 을 사용해야 하기 때문에 면접에서 자주 물어본다. 주로 사용되는 strategy 중심으로 질문이 들어오며 유명한 세 가지를 비교한 글을 첨부한다.
+      1. 개념
 
-* [Gitflow vs GitHub flow vs GitLab flow](https://ujuc.github.io/2015/12/16/git-flow-github-flow-gitlab-flow/)
+         Vincent Driessen이 말한 branching model를 구현한 Git 확장 모듈
 
-많은 회사들이 GitHub 을 기반으로 협업을 하게 되는데, (BitBucket 이라는 훌륭한 도구도 존재합니다.) GitHub 에서 어떤 일을 할 수 있는지, 어떻게 GitHub Repository 에 기여를 하는지 정리한 글을 첨부한다.
+      2. 사용처
 
-* [오픈소스 프로젝트에 컨트리뷰트 하기](http://guruble.com/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%9D%98-%EC%BB%A8%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%84%B0%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%90%98%EB%8A%94-%EA%B2%83/)
-* [GitHub Cheetsheet](https://github.com/tiimgreen/github-cheat-sheet)
+         계획적인 릴리즈를 가지고 스케줄이 짜여진 대규모 프로젝트에 사용
 
-[뒤로](https://github.com/JaeYeopHan/for_beginner)/[위로](#part-1-1-development-common-sense)
+      3. 기본 5가지 branch
+
+         1. Master : 릴리즈 시 사용하는 최종 단계 메인 branch
+            * Tag를 통해 버전 관리를 한다.
+   
+         2. Develop : 다음 릴리즈 버전 개발을 진행하는 branch
+   
+            * 추가기능 필요시 featur branch 내어 개발 진행
+   
+            * 추가기능 완료시 develop branch에 merge함
+   
+         3. Feature : 새로운 기능 구현하는 branch
+   
+            * from develop /  to develop
+            * merge할 때는 --no-ff 옵션으로 merge(머지가 되었음을 git에 남김)
+            * 기능 단위마다 branch 생성
+   
+         4. Release : master branch에 merge시 bug fix하는 branch
+
+            * from develop / to develop,master
+
+            * 릴리즈 준비되면 master에 merge( --no-ff 옵션으로 merge(머지가 되었음을 git에 남김))
+
+            * master에 merge 한 후 
+              * tag 명령을 사용하여 릴리즈 버전 명시 / -s나 -u <key> 옵션을 이용하여 머지한 사람의 정보 남김
+              *  develop에 merge
+
+         5. hotfix : master branch의 bug fix 
+
+            * from master / to develop,master
+
+            * master 버그 수정 후
+              * develop에 반영
+              * master에 반영(tag 추가)
+              * release가 있다면 merge
+   
+      3. 장점
+   
+         * 명령어가 나와있다.
+   
+         * 웬만한 에디터와 IDE에는 플러그인으로 존재한다.
+   
+      4. 단점
+   
+         * branch가 많아 복잡하다.
+   
+         * 안 쓰는 branch가 있다. 그리고 몇몇 branch는 애매한 포지션이다.
+   
+   2. GitHub flow
+   
+      1. 개념
+   
+         Git flow 단순화 한거(release, hotfix 없앰)
+   
+         자동화
+   
+      2. 사용처
+   
+         일반 프로젝트에 사용
+   
+      2. 사용법
+   
+         1. `master` branch는 어떤 때든 배포가 가능하다.
+            * `master` branch는 항상 최신의 상태
+            * stable 상태로 Product에 배포되는 branch
+   
+         2. branch 이름 이름은 어떤 일을 하는지 명확하게 작성
+   
+            `feature` branch나 `develop` branch가 존재하지 않아서 명확하게 써줘야됨
+   
+         3. 원격지 branch로 수시로 push를 한다.
+   
+            원하는 시점으로 roll back 가능
+   
+         4. pull request 시점
+   
+            * 피드백 필요할 때
+   
+            * merging 준비 완료
+   
+         5. 기능에 대한 리뷰, 시안 후 master로 merge한다
+   
+         6. `master`로 머지되고 푸시되었을 때는 즉시 배포(자동 배포)되어야 한다.
+   
+            `master`로 머지가 일어나면 `hubot`을 이용하여 자동으로 배포가 되도록 설정
+   
+      3. 장점
+         - branch 전략이 단순하다.
+         - Github 사이트에서 제공하는 기능 사용
+         - 코드 리뷰 가능
+         - CI
+           - 형상관리 항목에 대한 선정과 형상관리 구성 방식 결정
+           - 빌드/배포 자동화 방식
+           - 단위테스트/통합테스트 방식
+         
+      4. 단점
+         - CI와 배포 자동화가 되어있지 않은 시스템에서는 사람이 관련된 업무를 진행한다.
+         - 복잡한 대규모 프로젝트에는 부적절
+         - 배포 자동화 -> 배포, 환경 구성, 릴리즈, 통합에 대한 이슈
+   
+      
+   
+   3. GitLab flow
+   
+      <img src="https://camo.githubusercontent.com/805cc97fd57cca10339b278f4db275f9a675dcb45cb76752d7bac5fc87b352fa/68747470733a2f2f61626f75742e6769746c61622e636f6d2f696d616765732f6769745f666c6f772f656e7669726f6e6d656e745f6272616e636865732e706e67" alt="img" style="zoom: 67%;" />
+   
+      1. branch
+   
+         1. Production
+            * Git flow의 Master branch역할
+            * 배포 역할만 담당
+            * master 이상 권한만 push 가능
+         2. Pre-Production
+            * 배포 시기 조절가능
+            * production 브랜치로 결과를 넘기기 전에 테스트를 수행
+         3. Master
+            * 기능 추가를 위해 새로운 브랜치 생성
+            * 새로운 branch에 완료 후 merge request
+            * review 후 master에 merge
+            * 테스트가 필요하다면 pre-production에서 테스트
+      
+         
+      
+      2. 장점
+      
+         * Git 단점 보완(배포시기 조절 가능)
+         * Production브랜치에서 릴리즈된 코드가 항상 프로젝트의 최신버전 상태를 유지해야할 필요가 없다
+      
+      
+      
+      
+
+[뒤로](https://github.com/YG-creator/Interview_Question_for_Beginner)/[위로](#Part-1-1-개발-CS)
 
 </br>
 
 </br>
+
+Ref : https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Development_common_sense
 
 _Development_common_sense.end_
 
-
-
-
-
-# 1. Git 개념
-
-* 분산버전관리시스템
-
-
-
-# 2. Git 특징
-
-* 버전을 공유함
-
-* 파일에 비해 용량이 작음(snpashot 차이점만 저장)
-
-
-
-# 3. Git flow
-
-Working directory->staging area->HEAD
-
-Working directory : 로컬 저장소에서 수정한 파일
-
-staging area :  commit할 목록
-
-HEAD : version
