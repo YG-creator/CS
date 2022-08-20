@@ -9,17 +9,24 @@ lambda, stream, enum
    한글 있을 경우 : VM options에 '-locale ko_KR -encoding UTF-8 -charset UTF-8 -docencoding UTF' 입력
 
 4. 배열 -> 문자열 변환 
+
    1. Arrays.toString(a); -> 1차원
    2. Arrays.deepToString(a); -> n차원
 
 5. Arrays.equals(a,b);
+
 6. 배열 -> 리스트 : Arrays.asList(배열) 
+
 7. getter, setter 단축키 : alt + shift + s,r
 
 8. 접근제어자 default : 같은 패키지면 사용 가능 - 접근제어자 안쓰면 자동으로 됨
+
 9. F3 : 해당 메소드 찾아감
+
 10. 지역클래스 : 클래스 -> 함수 -> 클래스
+
 11. 익명 내부 클래스 
+
     1. 인터페이스 클래스 밖에 선언(함수 포함)
     2. 실행 메소드 안에서 인터에이스를 사용한 인스턴스 생성
     3. overriding함
@@ -32,10 +39,14 @@ lambda, stream, enum
     클래스 사용시 '상위 클래스 이름 = new 상위 클래스.하위클래스()'
 
 13. 참조 클래스 비교
+
     1. == 주소 비교
     2. 사용한는 클래스에 Generete hashcode(), equals() 로 overriding 하면 ->  equals()로 값 비교 가능
+
 14. 캡슐화 : priavte 변수 + public 함수
+
 15. 접근제어자 
+
     1. default : 같은 패키지
     2. public : 모두 가능
     3. protected : 상속 + 같은 패키지만
@@ -71,6 +82,7 @@ lambda, stream, enum
        
 
 18. 추상클래스 다형성
+
     1. 다운캐스팅(부모->자식)은 가능
     2. 업캐스팅(자식->부모)은 불가능 -> 자식클래스만 가진 함수를 부모클래스로 선언 후 사용하면 못씀
 
@@ -89,10 +101,29 @@ lambda, stream, enum
 
 
 
+23. TreeSet : 중복ㄴ + 정렬 
+24. TreeMap : key  + 정렬
 
+25. cntrl + shift + [ : 똑같은 페이지 2개로 보기 -> 코드가 길어질 때 보기 편리
 
-한달 : 2000흑돌(숙제) + 3300흑돌(월정액) + 1750흑돌(탐험) = 7050흑돌 = 47개 
+26. 람다식으로 추상메서드 구현하기
 
-65된다고 치면 120은 못함
+    @FunctionalInterface : 1개의 추상메서드를 뜻함
 
-350 * 5 -> 
+    1. 인터페이스 + 추상메서드 + @FunctionalInterface(선택)  생성 후 -> 인터페이스이름 이름 = (매개변수이름)  -> {구현};
+
+    2. 기존거 사용 -> 인터페이스이름 이름 = (매개변수)  -> {구현}
+
+       ![image-20220819182450787](md-images/image-20220819182450787.png)
+
+27. 함수형 인터페이스 API
+
+    1. Supplier : 매개변수는 없지만 반환자료형은 있음
+
+       Supplier<반환자료형> 이름 = () -> {반환할거}
+
+    2. Consumer : 매개변수는 1개, 반환 자료형은 없음
+
+       Consumer <매개변수자료형> 이름 = () -> {구현}
+
+       
