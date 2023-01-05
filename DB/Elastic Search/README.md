@@ -238,20 +238,6 @@ Elasticsearch는 Apache Lucene으로 구현된 검색엔진임
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 3. 네이버클라우드 플랫폼의 Elasticsearch 사용하는 이유
 
 1. 손쉬운 설치
